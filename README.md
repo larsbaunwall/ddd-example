@@ -1,9 +1,9 @@
-[![Build status](https://thinkability.visualstudio.com/DDDSample/_apis/build/status/DDDSample-ASP.NET%20Core-CI)](https://thinkability.visualstudio.com/DDDSample/_build/latest?definitionId=-1) ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
-
 # DDD Sample for Marten and Kafka
-This sample is still in it's early stages. But great stuff is coming! (at least it's planned :-o )
+For now, I have a working structure for command handlers, eventsourced domain model and one eventhandler for updating a readmodel.
 
-But for now, I have a working structure for command handlers, eventsourced domain model and one eventhandler for updating a readmodel.
+
+## Getting started
+Dive into the [/src](src) folder for the first bit. I've written helping notes and tips in the major project root folders.
 
 ## Technologies used
 I'm playing a bit around with these technologies for now:
@@ -16,10 +16,11 @@ I'm still working out the structure of this project, but eventually, I'm hoping 
 
 For now, I'm definately working on:
 * Polishing the last bits
+* An example of a query handler infrastructure using the readmodel (the Q side in CQRS)
 * Tests, tests, tests
 
 ## I love champagne!
-If you've been looking a bit at the code, you've probably stumbled upon a nice little champagne domain! The champagne comes from a personal hobby of mine - and the [Champagne Moments platform](https://champagnemoments.eu) I'm also working on at the moment (where we actually use some of this stuff).
+If you've been looking a bit at the code, you've probably stumbled upon a nice little champagne domain! The champagne comes from a personal hobby of mine - and from applying it at a startup working on champagne experiences (the startup failed, but the ideas survived).
 
 ## Contributing
 I would love some help along the way - feel free to reach out to me here @GitHub or catch me @ larslb@thinkability.dk.

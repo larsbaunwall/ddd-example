@@ -2,12 +2,14 @@ using System;
 
 namespace Domain.Aggregates.Champagne.ValueObjects
 {
-    public class ChampagneName : SingleValueObject<string>
+    public record ChampagneName
     {
-        public ChampagneName(string value) : base(value)
+        public string Value { get; set; }
+        public ChampagneName(string value)
         {
-            if(string.IsNullOrEmpty(value))
-                throw new ArgumentException(nameof(value));
+            ArgumentException.ThrowIfNullOrEmpty(value);
+
+            Value = value;
         }
     }
 }

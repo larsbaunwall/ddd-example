@@ -3,15 +3,9 @@ using Messaging.Contracts;
 
 namespace Commands.Handlers.Champagne
 {
-    public class RenameChampagneCommand : ICommand<Response>
+    public class RenameChampagneCommand(Guid champagneId, string newName) : ICommand<Response>
     {
-        public RenameChampagneCommand(Guid champagneId, string newName)
-        {
-            ChampagneId = champagneId;
-            NewName = newName;
-        }
-
-        public Guid ChampagneId { get; private set; }
-        public string NewName { get; private set; }
+        public Guid ChampagneId { get; private set; } = champagneId;
+        public string NewName { get; private set; } = newName;
     }
 }

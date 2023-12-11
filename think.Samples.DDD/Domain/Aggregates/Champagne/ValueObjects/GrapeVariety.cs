@@ -3,8 +3,10 @@ using System.Linq;
 
 namespace Domain.Aggregates.Champagne.ValueObjects
 {
-    public class GrapeVariety: SingleValueObject<string>
+    public class GrapeVariety
     {
+        public string Value { get; set; }
+        
         private readonly string[] _allowedGrapeTypes = 
         {
             "Chardonnay",
@@ -16,13 +18,14 @@ namespace Domain.Aggregates.Champagne.ValueObjects
             "PetitMeslier"
         };
 
-        public GrapeVariety(string value) : base(value)
+        public GrapeVariety(string value)
         {
-            if(string.IsNullOrEmpty(value))
-                throw new ArgumentException(nameof(value));
-            
-            if(!_allowedGrapeTypes.Contains(value))
+            ArgumentException.ThrowIfNullOrEmpty(value);
+
+            if (!_allowedGrapeTypes.Contains(value))
                 throw new ArgumentException($"Grape '{value}' is not allowed in a champagne", nameof(value));
+
+            Value = value;
         }
     }
 }

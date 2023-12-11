@@ -4,18 +4,11 @@ using Messaging.Contracts;
 
 namespace Messaging
 {
-    public class LamarEventHandlerFactory : IEventHandlerFactory
+    public class LamarEventHandlerFactory(IServiceContext context) : IEventHandlerFactory
     {
-        private readonly IServiceContext _context;
-
-        public LamarEventHandlerFactory(IServiceContext context)
-        {
-            _context = context;
-        }
-        
         public IEventHandler<TEvent> GetEventHandler<TEvent>()
         {
-            return _context.GetInstance<IEventHandler<TEvent>>();
+            return context.GetInstance<IEventHandler<TEvent>>();
         }
     }
 }

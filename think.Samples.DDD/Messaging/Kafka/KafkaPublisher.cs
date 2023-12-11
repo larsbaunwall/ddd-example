@@ -6,23 +6,17 @@ using Microsoft.Extensions.Options;
 
 namespace Messaging.Kafka
 {
-    public class KafkaPublisher : IEventPublisher
+    public class KafkaPublisher(ISerializingProducer<Null, object> producer, IOptions<MessagingConfig> config)
+        : IEventPublisher
     {
-        private readonly ISerializingProducer<Null, object> _producer;
-        private readonly MessagingConfig _config;
+        private readonly MessagingConfig _config = config.Value;
 
-        public KafkaPublisher(ISerializingProducer<Null, object> producer, IOptions<MessagingConfig> config)
-        {
-            _producer = producer;
-            _config = config.Value;
-        }
-        
         public async Task PublishAsync<TEvent>(TEvent @event, EventMetadata metadata) where TEvent : IDomainEvent
         {
             var envelope = new MessageEnvelope(@event, metadata);
             var topic = Convention.TopicName(_config.BoundedContext, @event.GetType().Name);
             
-            var res = await _producer.ProduceAsync(topic, null, envelope);
+            var res = await producer.ProduceAsync(topic, null, envelope);
 
             if (res.Error.HasError)
                 throw new PublishingException(res.Error.Reason);

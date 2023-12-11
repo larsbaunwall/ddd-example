@@ -2,19 +2,12 @@
 
 namespace Messaging.Contracts
 {
-    public class Response
+    public class Response(bool isSuccessful, Exception exception = null, string message = null)
     {
-        public bool IsSuccessful { get; private set; }
-        public Exception Exception { get; private set; }
-        public string Message { get; private set; }
+        public bool IsSuccessful { get; private set; } = isSuccessful;
+        public Exception Exception { get; private set; } = exception;
+        public string Message { get; private set; } = message;
 
-        public Response(bool isSuccessful, Exception exception = null, string message = null)
-        {
-            IsSuccessful = isSuccessful;
-            Exception = exception;
-            Message = message;
-        }
-        
         public static Response Unsuccessful(string message = null, Exception exception = null)
         {
             return new Response(false, exception, message);

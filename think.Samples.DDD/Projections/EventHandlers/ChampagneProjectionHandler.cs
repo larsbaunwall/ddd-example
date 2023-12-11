@@ -5,6 +5,9 @@ using Messaging.Contracts;
 
 namespace Projections.EventHandlers
 {
+    /// <summary>
+    /// This would be the place to keep the custom Champagne read model in sync
+    /// </summary>
     public class ChampagneProjectionHandler : IEventHandler<ChampagneCreated>, IEventHandler<ChampagneRenamed>
     {
         public Task Handle(ChampagneCreated @event)

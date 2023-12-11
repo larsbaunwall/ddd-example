@@ -2,12 +2,15 @@ using System;
 
 namespace Domain.Aggregates.Champagne.ValueObjects
 {
-    public class GrapeBlendPercentage : SingleValueObject<double>
+    public record GrapeBlendPercentage
     {
-        public GrapeBlendPercentage(double value) : base(value)
+        public double Value { get; set; }
+        public GrapeBlendPercentage(double value)
         {
-            if(value <= 0 || value > 1) 
+            if(value is <= 0 or > 1) 
                 throw new ArgumentException("Percentage must be between ]0..1]", nameof(value));
+
+            Value = value;
         }
     }
 }

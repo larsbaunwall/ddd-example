@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Aggregates.Champagne.ValueObjects
 {
-    public class GrapeBlend : ValueObject
+    public record GrapeBlend
     {
         public GrapeBlendPercentage Percentage { get; private set; }
         public GrapeVariety GrapeVariety { get; private set; }
@@ -11,19 +11,13 @@ namespace Domain.Aggregates.Champagne.ValueObjects
         public GrapeBlend(GrapeBlendPercentage percentage, GrapeVariety grape)
         {
             if (percentage == null)
-                throw new ArgumentException(nameof(percentage));
+                throw new ArgumentException(null, nameof(percentage));
             
             if(grape == null)
-                throw new ArgumentException(nameof(grape));
+                throw new ArgumentException(null, nameof(grape));
 
             Percentage = percentage;
             GrapeVariety = grape;
-        }
-        
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            yield return Percentage;
-            yield return GrapeVariety;
         }
     }
 }

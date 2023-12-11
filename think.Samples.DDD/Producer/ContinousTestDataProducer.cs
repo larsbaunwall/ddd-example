@@ -29,12 +29,6 @@ namespace Producer
             var estates = new[] {"Lars", "DAD", "Tour-de-Code", "Vinofactorie"};
             var labels = new[] {"1973", "2003", "1998", "1996", "Black Label", "Nocturne"};
 
-            T SelectOne<T>(IEnumerable<T> options)
-            {
-                var idx = random.Next(0, options.Count() - 1);
-                return options.ElementAt(idx);
-            }
-
             var champagnes = new List<Guid>();
 
             while (true)
@@ -59,6 +53,12 @@ namespace Producer
                 }
 
                 await Task.Delay(random.Next(1000, 3000));
+            }
+
+            T SelectOne<T>(IEnumerable<T> options)
+            {
+                var idx = random.Next(0, options.Count() - 1);
+                return options.ElementAt(idx);
             }
         }
     }

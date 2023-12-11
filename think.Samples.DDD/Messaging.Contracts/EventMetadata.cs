@@ -2,17 +2,10 @@
 
 namespace Messaging.Contracts
 {
-    public class EventMetadata
+    public class EventMetadata(DateTimeOffset eventDate, Guid correlationId, int sequence)
     {
-        public EventMetadata(DateTimeOffset eventDate, Guid correlationId, int sequence)
-        {
-            EventDate = eventDate;
-            CorrelationId = correlationId;
-            Sequence = sequence;
-        }
-
-        public DateTimeOffset EventDate { get; }
-        public Guid CorrelationId { get; }
-        public int Sequence { get; }
+        public DateTimeOffset EventDate { get; } = eventDate;
+        public Guid CorrelationId { get; } = correlationId;
+        public int Sequence { get; } = sequence;
     }
 }
